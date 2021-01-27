@@ -51,6 +51,7 @@ namespace Async_Inn
                 {
                     await context.Response.WriteAsync("Hello World!");
                 });
+                endpoints.MapControllers();
             });
         }
 
