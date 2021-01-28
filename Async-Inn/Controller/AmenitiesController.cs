@@ -54,8 +54,8 @@ namespace Async_Inn.Controller
                 return BadRequest();
             }
 
-            var updatedRoom = await _amenity.UpdateAmenity(id, amenity);
-            return Ok(updatedRoom);
+            var updatedAmenity = await _amenity.UpdateAmenity(id, amenity);
+            return Ok(updatedAmenity);
         }
 
         // POST: api/Amenities
