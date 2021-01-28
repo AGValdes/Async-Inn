@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Async_Inn.Data;
+using Async_Inn.Models.Interfaces;
+using Async_Inn.Models.Interfaces.Services;
 
 namespace Async_Inn
 {
@@ -25,14 +27,17 @@ namespace Async_Inn
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc();
+            services.AddControllers();
             services.AddDbContext<AsyncInnDbContext>(options => {
                 // Our DATABASE_URL from js days
                 string connectionString = Configuration.GetConnectionString("DefaultConnection");
                 options.UseSqlServer(connectionString);
              
             });
-            services.AddMvc();
-            services.AddControllers();
+            services.AddTransient<IRoom, RoomRepository>();
+            services.AddTransient<IHotel, HotelRepository>();
+            services.AddTransient<IAmenity, AmenityRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -11,3 +11,7 @@ Author: Ameilia Valdes, 1/25/2021
 1/26/2021
 
 Today we wired up our database, models and controllers.
+
+1/27/2021
+
+Today we refactored so that we are accessing our database using interfaces instead of directly in each controller. We added repository classes that use these interfaces to handle the CRUD interaction with our database, whereas before our controllers were handling them directly. We injected these repository dependancies to our app to change the way handle data flow in and out of our database.
