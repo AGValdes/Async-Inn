@@ -65,7 +65,7 @@ namespace Async_Inn.Controller
         public async Task<ActionResult<Amenity>> PostAmenity(Amenity amenity)
         {
             await _amenity.CreateAmenity(amenity);
-            return CreatedAtAction("GetRooms", new { id = amenity.Id }, amenity);
+            return CreatedAtAction("GetAmenity", new { id = amenity.Id }, amenity);
         }
 
         // DELETE: api/Amenities/5
