@@ -14,9 +14,9 @@ namespace Async_Inn.Models.Interfaces
         Task DeleteRoom(int Id);
 
         //new methods required in the service to add and remove amenities
-        Task AddAmenityToRoom(int courseId, int studentId);
+        Task AddAmenityToRoom(int roomId, int amenityId);
 
-        Task RemoveAmenityFromRoom(int courseId, int studentId);
+        Task RemoveAmenityFromRoom(int roomId, int amenityId);
 
     }
 }
