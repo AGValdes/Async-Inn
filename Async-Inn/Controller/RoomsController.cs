@@ -76,5 +76,24 @@ namespace Async_Inn.Controller
             await _room.DeleteRoom(id);
             return NoContent();
         }
+
+        //new routes that take in the room id and amenity id
+
+        //Adds an amenity to a room
+        [HttpPost]
+        [Route("{roomId}/{amenityId}")]
+        public async Task<IActionResult> AddAmenityToRoom(int roomId, int amenityId)
+        {
+            await _room.AddAmenityToRoom(roomId, amenityId);
+            return NoContent();
+        }
+        //removes an amenity from a room
+        [HttpDelete]
+        [Route("{roomId}/{amenityId}")]
+        public async Task<IActionResult> DeleteAmenityFromRoom(int roomId, int amenityId)
+        {
+            await _room.RemoveAmenityFromRoom(roomId, amenityId);
+            return NoContent();
+        }
     }
 }
