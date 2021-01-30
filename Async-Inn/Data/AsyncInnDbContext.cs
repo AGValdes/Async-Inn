@@ -43,6 +43,9 @@ namespace Async_Inn.Data
             modelBuilder.Entity<Amenity>().HasData(new Amenity { Id = 1, Name = "Mini Bar"});
             modelBuilder.Entity<Amenity>().HasData(new Amenity { Id = 2, Name = "Kitchenette" });
             modelBuilder.Entity<Amenity>().HasData(new Amenity { Id = 3, Name = "Desk Work Space" });
+            modelBuilder.Entity<HotelRoom>().HasData(new HotelRoom { HotelId = 1, RoomId = 3, RoomNumber = 69, Rate = 39.99m, PetFriendly = true });
+            modelBuilder.Entity<HotelRoom>().HasData(new HotelRoom { HotelId = 2, RoomId = 2, RoomNumber = 42, Rate = 199.99m, PetFriendly = false });
+            modelBuilder.Entity<HotelRoom>().HasData(new HotelRoom { HotelId = 3, RoomId = 1, RoomNumber = 401, Rate = 299.99m, PetFriendly = false });
 
         }
 

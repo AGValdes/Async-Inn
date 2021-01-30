@@ -49,23 +49,19 @@ namespace Async_Inn.Models.Interfaces.Services
         {
             return await _context.HotelRooms
                                 .Where(h => h.HotelId == hotelId && h.RoomNumber == roomNumber)
-                                  .Include(h => h.Hotel)
-                                    .ThenInclude(r => r.HotelRooms)
                                       .FirstOrDefaultAsync();
         }
 
-        public  async Task<List<HotelRoom>> GetHotelRooms(int hotelId, int roomNumber)
+        public  async Task<List<HotelRoom>> GetHotelRooms(int hotelId)
         {
             return await _context.HotelRooms
-                              .Where(h => h.HotelId == hotelId && h.RoomNumber == roomNumber)
-                               .Include(h => h.Hotel)
-                                 .ThenInclude(r => r.HotelRooms)
+                              .Where(h => h.HotelId == hotelId)
                                    .ToListAsync();
         }
 
-        public async Task RemoveRoomFromHotel(int roomId, int hotelId)
+        public async Task RemoveRoomFromHotel(int roomNumber, int hotelId)
         {
-            var result = await _context.HotelRooms.FirstOrDefaultAsync(x => x.RoomId == roomId && x.HotelId == hotelId);
+            var result = await _context.HotelRooms.FirstOrDefaultAsync(x => x.RoomNumber == roomNumber && x.HotelId == hotelId);
                                         
             _context.Entry(result).State = EntityState.Deleted;
 

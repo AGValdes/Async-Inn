@@ -24,9 +24,10 @@ namespace Async_Inn.Controller
 
         // GET: api/Hotels
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Room>>> GetRooms()
+        public async Task<ActionResult<IEnumerable<Room>>> GetHotels()
         {
-            return Ok(await _hotel.GetHotels());
+            var hotel = await _hotel.GetHotels();
+            return Ok(hotel);
         }
 
         // GET: api/Hotels/5
