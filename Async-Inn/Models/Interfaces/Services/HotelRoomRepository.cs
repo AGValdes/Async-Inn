@@ -10,11 +10,11 @@ namespace Async_Inn.Models.Interfaces.Services
     public class HotelRoomRepository : IHotelRoom
     {
         private readonly AsyncInnDbContext _context;
-        private readonly IRoom _rooms;
-        public HotelRoomRepository(AsyncInnDbContext context, IRoom rooms)
+  
+        public HotelRoomRepository(AsyncInnDbContext context)
         {
             _context = context;
-            _rooms = rooms;
+
         }
         public  async Task AddRoomToHotel(int roomId, int hotelId, int roomNumber, decimal rate, bool petFriendly)
         {
@@ -38,32 +38,41 @@ namespace Async_Inn.Models.Interfaces.Services
             return hotelRoom;
         }
 
-        public async Task DeleteHotelRoom(int Id)
+        public async Task DeleteHotelRoom(int hotelId, int roomnumber)
         {
-            HotelRoom HotelRoom = await GetHotelRoom(Id, _);
+            HotelRoom HotelRoom = await GetHotelRoom(hotelId, roomnumber);
             _context.Entry(HotelRoom).State = EntityState.Deleted;
             await _context.SaveChangesAsync();
         }
 
         public async Task<HotelRoom> GetHotelRoom(int hotelId, int roomNumber)
         {
-           var hotelRoom = await 
-                                  
+            return await _context.HotelRooms
+                                .Where(h => h.HotelId == hotelId && h.RoomNumber == roomNumber)
+                                      .FirstOrDefaultAsync();
         }
 
-        public Task<List<Room>> GetHotelRooms()
+        public  async Task<List<HotelRoom>> GetHotelRooms(int hotelId)
         {
-            throw new NotImplementedException();
+            return await _context.HotelRooms
+                              .Where(h => h.HotelId == hotelId)
+                                   .ToListAsync();
         }
 
-        public Task RemoveRoomFromHotel(int roomId, int hotelId)
+        public async Task RemoveRoomFromHotel(int roomNumber, int hotelId)
         {
-            throw new NotImplementedException();
+            var result = await _context.HotelRooms.FirstOrDefaultAsync(x => x.RoomNumber == roomNumber && x.HotelId == hotelId);
+                                        
+            _context.Entry(result).State = EntityState.Deleted;
+
+            await _context.SaveChangesAsync();
         }
 
-        public Task<Room> UpdateHotelRoom(int Id, HotelRoom hotelRoom)
+        public async Task<HotelRoom> UpdateHotelRoom( HotelRoom hotelRoom)
         {
-            throw new NotImplementedException();
+            _context.Entry(hotelRoom).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+            return hotelRoom;
         }
     }
 }
