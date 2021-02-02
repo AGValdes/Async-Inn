@@ -24,16 +24,16 @@ namespace Async_Inn.Controller
 
         // GET: api/Rooms
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Room>>> GetRooms()
+        public async Task<ActionResult<IEnumerable<RoomDTO>>> GetRooms()
         {
             return Ok(await _room.GetRooms());
         }
 
         // GET: api/Rooms/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Room>> GetRoom(int Id)
+        public async Task<ActionResult<RoomDTO>> GetRoom(int Id)
         {
-            var room = await _room.GetRoom(Id);
+            RoomDTO room = await _room.GetRoom(Id);
 
             if (room == null)
             {

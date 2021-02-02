@@ -24,7 +24,8 @@ namespace Async_Inn.Models.Interfaces.Services
                 HotelId = hotelId,
                 RoomNumber = roomNumber,
                 Rate = rate,
-                PetFriendly = petFriendly
+                PetFriendly = petFriendly,
+          
             };
 
             _context.Entry(HotelRoom).State = EntityState.Added;

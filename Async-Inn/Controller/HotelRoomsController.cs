@@ -65,7 +65,7 @@ namespace Async_Inn.Controller
         public async Task<ActionResult<HotelRoom>> PostHotelRoom(HotelRoom hotelRoom)
         {
             await _hotelroom.CreateHotelRoom(hotelRoom);
-            return CreatedAtAction("GetHotelRoom", new { Hotelid = hotelRoom.HotelId, RoomId = hotelRoom.RoomId, RoomNumber = hotelRoom.RoomNumber, PetFriendly = hotelRoom.PetFriendly, Rate = hotelRoom.Rate  }, hotelRoom);
+            return CreatedAtAction("GetHotelRoom", new { Hotelid = hotelRoom.HotelId, RoomId = hotelRoom.RoomId, RoomNumber = hotelRoom.RoomNumber, PetFriendly = hotelRoom.PetFriendly, Rate = hotelRoom.Rate, Room = hotelRoom.Room, Hotel = hotelRoom.Hotel  }, hotelRoom);
         }
 
         // DELETE: api/HotelRooms/5
@@ -80,6 +80,7 @@ namespace Async_Inn.Controller
         [Route("Hotels/{hotelId}/Rooms")]
         public async Task<IActionResult> AddRoomToHotel(int hotelId, int roomId, int roomNumber, decimal rate, bool petFriendly)
         {
+            await _hotelroom.AddRoomToHotel(hotelId, roomId, roomNumber, rate, petFriendly);
             await _hotelroom.AddRoomToHotel(hotelId, roomId, roomNumber, rate, petFriendly);
             return NoContent();
         }

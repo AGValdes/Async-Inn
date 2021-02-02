@@ -5,16 +5,11 @@ using System.Threading.Tasks;
 
 namespace Async_Inn.Models
 {
-    public class Room
+    public class RoomDTO
     {
-        public int Id { get; set; }
+        public int ID { get; set; }
         public string Name { get; set; }
         public string Layout { get; set; }
-
-
-        //navigation properties
-        public List<RoomAmenity> RoomAmenities { get; set; }
-
-        public List<HotelRoom> HotelRooms { get; set; }
+        public List<AmenityDTO> Amenities { get; set; }
     }
 }
