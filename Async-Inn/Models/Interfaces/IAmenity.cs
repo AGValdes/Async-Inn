@@ -8,10 +8,10 @@ namespace Async_Inn.Models.Interfaces
 {
     public interface IAmenity
     {
-        Task<Amenity> CreateAmenity(Amenity amenity);
-        Task<Amenity> GetAmenity(int Id);
-        Task<List<Amenity>> GetAmenities();
-        Task<Amenity> UpdateAmenity(int Id, Amenity amenity);
+        Task<AmenityDTO> CreateAmenity(AmenityDTO amenityDTO);
+        Task<AmenityDTO> GetAmenity(int Id);
+        Task<List<AmenityDTO>> GetAmenities();
+        Task<AmenityDTO> UpdateAmenity(AmenityDTO amenityDTO);
         Task DeleteAmenity(int Id);
     }
 }

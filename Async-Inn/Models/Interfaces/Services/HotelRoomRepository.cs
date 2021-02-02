@@ -25,6 +25,8 @@ namespace Async_Inn.Models.Interfaces.Services
                 RoomNumber = roomNumber,
                 Rate = rate,
                 PetFriendly = petFriendly,
+                Room = await _context.Rooms.FirstOrDefaultAsync(r => r.Id == roomId),
+                Hotel = await _context.Hotels.FirstOrDefaultAsync(h => h.Id == hotelId)
           
             };
 
