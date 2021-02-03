@@ -74,7 +74,7 @@ namespace Async_Inn
             {
                 endpoints.MapControllers();
             });
-        }
+        } 
 
     }
 }

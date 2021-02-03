@@ -16,6 +16,10 @@ Today we wired up our database, models and controllers.
 
 Today we refactored so that we are accessing our database using interfaces instead of directly in each controller. We added repository classes that use these interfaces to handle the CRUD interaction with our database, whereas before our controllers were handling them directly. We injected these repository dependancies to our app to change the way handle data flow in and out of our database.
 
+2/2/2021
+Below is a link to the deployed API, where you can view documentation of all routes.
+(Link to Deployed API)[https://async-inn.azurewebsites.net/index.html]
+
 
 
 
