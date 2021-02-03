@@ -19,11 +19,11 @@ namespace Async_Inn.Models.Interfaces.Services
         /// </summary>
         /// <param name="amenity"></param>
         /// <returns></returns>
-        public async Task<AmenityDTO> CreateAmenity(AmenityDTO amenity)
+        public async Task<AmenityDTO> CreateAmenity(AmenityDTO amenityDTO)
         {
-            _context.Entry(amenity).State = EntityState.Added;
+            _context.Entry(amenityDTO).State = EntityState.Added;
             await _context.SaveChangesAsync();
-            return amenity;
+            return amenityDTO;
         }
         /// <summary>
         /// This method queries the database context for amenities, and returns a list of amenity data transfer objects that contains the properties we want to display to the user.
