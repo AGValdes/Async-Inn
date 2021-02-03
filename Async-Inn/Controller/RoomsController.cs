@@ -47,14 +47,10 @@ namespace Async_Inn.Controller
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutRoom(int id, Room room)
+        public async Task<IActionResult> PutRoom(RoomDTO roomDTO)
         {
-            if (id != room.Id)
-            {
-                return BadRequest();
-            }
-
-            var updatedRoom = await _room.UpdateRoom(id, room);
+       
+            var updatedRoom = await _room.UpdateRoom(roomDTO);
             return Ok(updatedRoom);
         }
 
@@ -62,10 +58,10 @@ namespace Async_Inn.Controller
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<Room>> PostRoom(Room room)
+        public async Task<ActionResult<Room>> PostRoom(RoomDTO roomDTO)
         {
-            await _room.CreateRoom(room);
-            return CreatedAtAction("GetRooms", new { id = room.Id }, room);
+            await _room.CreateRoom(roomDTO);
+            return CreatedAtAction("GetRooms", new { id = roomDTO.ID }, roomDTO);
 
         }
 

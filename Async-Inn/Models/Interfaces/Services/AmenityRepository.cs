@@ -14,34 +14,72 @@ namespace Async_Inn.Models.Interfaces.Services
         {
             _context = context;
         }
-
-        public async Task<Amenity> CreateAmenity(Amenity amenity)
+        /// <summary>
+        /// The below method takes in an Amenity data transfer object, and adds it to the database.
+        /// </summary>
+        /// <param name="amenity"></param>
+        /// <returns></returns>
+        public async Task<AmenityDTO> CreateAmenity(AmenityDTO amenity)
         {
             _context.Entry(amenity).State = EntityState.Added;
             await _context.SaveChangesAsync();
             return amenity;
         }
-        public async Task<List<Amenity>> GetAmenities()
+        /// <summary>
+        /// This method queries the database context for amenities, and returns a list of amenity data transfer objects that contains the properties we want to display to the user.
+        /// </summary>
+        /// <returns></returns>
+        public async Task<List<AmenityDTO>> GetAmenities()
         {
-            var amenities = await _context.Amenities.ToListAsync();
+            var amenities = await _context.Amenities
+                            .Select(Amenity => new AmenityDTO()
+                            {
+                                ID = Amenity.Id,
+                                Name = Amenity.Name
+                            }).ToListAsync();
             return amenities;
+          
         }
-
-        public async Task<Amenity> GetAmenity(int Id)
+        /// <summary>
+        /// The below method 
+        /// </summary>The below method is very similar to the first, but it returns a specific amenity by Id
+        /// <param name="Id"></param>
+        /// <returns></returns>
+        public async Task<AmenityDTO> GetAmenity(int Id)
         {
-            Amenity amenity = await _context.Amenities.FindAsync(Id);
+            AmenityDTO amenity = await _context.Amenities
+                 .Select(Amenity => new AmenityDTO()
+                 {
+                     ID = Amenity.Id,
+                     Name = Amenity.Name
+                 }).FirstOrDefaultAsync(amenity => amenity.ID == Id);
             return amenity;
         }
-
-        public async Task<Amenity> UpdateAmenity(int Id, Amenity amenity)
+        /// <summary>
+        /// The below method takes in an amenity data transfer object, makes an amenity object with the properties of the DTO, and updates the database context.
+        /// </summary>
+        /// <param name="amenityDTO"></param>
+        /// <returns></returns>
+        public async Task<AmenityDTO> UpdateAmenity(AmenityDTO amenityDTO)
         {
+           Amenity amenity = new Amenity
+           {
+               Id = amenityDTO.ID,
+               Name = amenityDTO.Name,
+           };
+
             _context.Entry(amenity).State = EntityState.Modified;
             await _context.SaveChangesAsync();
-            return amenity;
+            return amenityDTO;
         }
+        /// <summary>
+        /// The below method deletes an amenity from the database context
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
         public async Task DeleteAmenity(int Id)
         {
-            Amenity amenity = await GetAmenity(Id);
+            AmenityDTO amenity = await GetAmenity(Id);
             _context.Entry(amenity).State = EntityState.Deleted;
             await _context.SaveChangesAsync();
         }

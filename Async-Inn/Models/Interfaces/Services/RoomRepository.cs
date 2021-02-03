@@ -14,25 +14,36 @@ namespace Async_Inn.Models.Interfaces.Services
         {
             _context = context;
         }
- 
-        public async Task<Room> CreateRoom(Room room)
+        /// <summary>
+        /// THe below method gets called by the RoomsController, it takes in a Room Data Transfer Object and creates a new room,
+        /// so that it can be posted to the database by the Post Room Route
+        /// </summary>
+        /// <param name="roomDTO"></param>
+        /// <returns></returns>
+        public async Task<RoomDTO> CreateRoom(RoomDTO roomDTO)
         {
-           _context.Entry(room).State = EntityState.Added;
+           _context.Entry(roomDTO).State = EntityState.Added;
             await _context.SaveChangesAsync();
-            return room;
+            return roomDTO;
         }
+        /// <summary>
+        ///The below method takes in a room id, queries the database context for rooms, including their room ammenities,
+        ///then returns a room Data Transfer Object. The amenities property is populated using an amenity Data TRansfer object.
+        ///This is called in the rooms controller to get a room by Id.
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
         public async Task<RoomDTO> GetRoom(int Id)
         {
             var room = await _context.Rooms.Include(Room => Room.RoomAmenities).ThenInclude(RoomAmenity => RoomAmenity.Amenity).ToListAsync();
             return room
-             .Where(Room => Room != null)
-             .Select(Room => new RoomDTO
+            .Select(Room => new RoomDTO
              {
                  ID = Room.Id,
                  Name = Room.Name,
                  Layout = Room.Layout,
                  Amenities = Room.RoomAmenities
-                 .Where(RoomAmenity => RoomAmenity != null)
+               
                .Select(a => new AmenityDTO()
                {
                    ID = a.Amenity.Id,
@@ -41,12 +52,14 @@ namespace Async_Inn.Models.Interfaces.Services
 
              }).FirstOrDefault();
         }
-
+        /// <summary>
+        /// The Below method is very similar to the above, accept it returns a list of room Data Transer Objects that represent all rooms in the database.
+        /// </summary>
+        /// <returns></returns>
         public async Task<List<RoomDTO>> GetRooms()
         { 
             var rooms = await _context.Rooms.Include(Room => Room.RoomAmenities).ThenInclude(RoomAmenity => RoomAmenity.Amenity).ToListAsync();
             return rooms
-                .Where(Room => Room != null)
            .Select(Room => new RoomDTO()
            {
                ID = Room.Id,
@@ -63,14 +76,30 @@ namespace Async_Inn.Models.Interfaces.Services
 
         
         }
-
-        public async Task<Room> UpdateRoom(int Id, Room room)
+        /// <summary>
+        /// The below method takes in a room data transfer object, modifies the room in the database,
+        /// and returns a room object with the updated properties from the DTO.
+        /// </summary>
+        /// <param name="roomDTO"></param>
+        /// <returns></returns>
+        public async Task<Room> UpdateRoom(RoomDTO roomDTO)
         {
+            Room room = new Room
+            {
+                Id = roomDTO.ID,
+                Name = roomDTO.Name,
+                Layout = roomDTO.Layout
+            };
+
             _context.Entry(room).State = EntityState.Modified;
             await _context.SaveChangesAsync();
             return room;
         }
-
+        /// <summary>
+        /// The below method takes in a room Id and deletes the corresponding room from the database.
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
         public async Task DeleteRoom(int Id)
         {
             RoomDTO room = await GetRoom(Id);
