@@ -12,6 +12,8 @@ using Microsoft.Extensions.Configuration;
 using Async_Inn.Data;
 using Async_Inn.Models.Interfaces;
 using Async_Inn.Models.Interfaces.Services;
+using Async_Inn.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace Async_Inn
 {
@@ -39,9 +41,9 @@ namespace Async_Inn
             services.AddTransient<IHotel, HotelRepository>();
             services.AddTransient<IAmenity, AmenityRepository>();
             services.AddTransient<IHotelRoom, HotelRoomRepository>();
+           
 
-       
-            //registers services
+            //registers swagger services
             services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo()
@@ -50,6 +52,15 @@ namespace Async_Inn
                     Version = "v1"
                 });
             });
+            //register i dentity services
+            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+            {
+                options.User.RequireUniqueEmail = true;
+                // There are other options like this
+            })
+           .AddEntityFrameworkStores<AsyncInnDbContext>();
+
+            services.AddTransient<IUserService, IdentityUserService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
