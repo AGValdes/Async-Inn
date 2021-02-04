@@ -5,7 +5,7 @@ Author: Ameilia Valdes, 1/25/2021
 This application is a RESTful API server that will manage the assets in hotels. It has the ability to modify and manage rooms, amenities, and new hotel locations as they are built. 
 
 ## Entity Relationships
-![ERD Image](/assets/Async_Inn_Erd.png)
+![ERD Image](assets/Async_Inn_Erd.png)
 
 1. The Location table will hold each hotel location. It has collumns for primary key, name, city, state, address, phone number and number of rooms for each location. It has a one to many relationship with the Room table, because one location can have many rooms.
 2. The LocationRoom table is a join table with a payload that is the price of each room. It uses the Location ID and Room ID as foreign keys and has a third collumn that is the price. 
