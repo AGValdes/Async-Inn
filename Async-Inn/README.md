@@ -20,6 +20,25 @@ Today we refactored so that we are accessing our database using interfaces inste
 Below is a link to the deployed API, where you can view documentation of all routes.
 (Link to Deployed API)[https://async-inn.azurewebsites.net/index.html]
 
+## Identity
+
+Identity is a microdoft framework that allows for user authentication. It provides a means for storing user login information and provides built in methods for registering and logging in a user. 
+
+## Implementation of Identity
+First, we create an ApplicationUser class, which inherits from the built-in class IdentityUser. We then added it to our database context, and migrated those changes so that our ApplicaitonUser table would be added to our database and store the user's identity. We then registered the Identity service in our StartUp file, in our ConfigureServices method. We also added a new IdentityUSerService, which implements the interface IUserService, which contains methods for registering and logging in a user. These services are called in the AccountController attached to corresponding post routes, using both inbound and outbound DTO's to refine inputs and data outputs. The request bodies and responses of each request are illustrated below:
+### Requests for /api/Users/Register Post Route:
+![Image of a Good Register Request](./assets/Register.RequestBody.png)
+![Image of a Bad  Register Request](./assets/Register.Request.Bad.png)
+### Responses for Register Post Requests:
+![Image of Response after Good Request](./assets/Register.Response.png)
+![Image of Response after a Bad Request](./assets/Register.Response.Bad.png)
+### Requests for /api/Users/Login Post Route:
+![Image of a Good Login Request](./assets/Login.Request.Body.Auth.png)
+![Image of a Bad Login Request](./assets/Login.Request.Body.UnAuth.png)
+## Responses for Login Post Request
+![Image of Response after a Good Request](./assets/Login.Response.Auth.png)
+![Image of a Response after a Bad Request](./assets/Login.Response.UnAuth.png)
+
 
 
 
