@@ -15,7 +15,7 @@ namespace Async_Inn.Controller
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private IUserService userService;
+        private readonly IUserService userService;
 
         public UsersController(IUserService service)
         {

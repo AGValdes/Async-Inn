@@ -10,8 +10,8 @@ namespace Async_Inn.Models.Interfaces.Services
 {
     public class IdentityUserService : IUserService
     {
-        private UserManager<ApplicationUser> userManager;
-        private JwtTokenService tokenService;
+        private readonly UserManager<ApplicationUser> userManager;
+        private readonly JwtTokenService tokenService;
 
         public IdentityUserService(UserManager<ApplicationUser> manager, JwtTokenService jwtTokenService)
         {
