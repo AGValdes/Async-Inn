@@ -1,6 +1,7 @@
 ﻿using Async_Inn.Models;
 using Async_Inn.Models.Api;
 using Async_Inn.Models.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -43,6 +44,15 @@ namespace Async_Inn.Controller
                 return user;
             }
             return Unauthorized();
+        }
+
+        [Authorize]
+        [HttpGet("me")]
+        public async Task<ActionResult<UserDTO>> Me()
+        {
+            // Following the [Authorize] phase, this.User will be ... you.
+            // Put a breakpoint here and inspect to see what's passed to our getUser method
+            return await userService.GetUser(this.User);
         }
     }
 }

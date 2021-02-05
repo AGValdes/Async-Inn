@@ -4,14 +4,16 @@ using Async_Inn.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Async_Inn.Migrations
 {
     [DbContext(typeof(AsyncInnDbContext))]
-    partial class AsyncInnDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210205004117_Policies")]
+    partial class Policies
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -518,138 +520,124 @@ namespace Async_Inn.Migrations
                         {
                             Id = 23,
                             ClaimType = "permissions",
-                            ClaimValue = "Add Room to Hotel",
-                            RoleId = "district manager"
-                        },
-                        new
-                        {
-                            Id = 24,
-                            ClaimType = "permissions",
                             ClaimValue = "See Hotels",
                             RoleId = "propertymanager"
                         },
                         new
                         {
-                            Id = 25,
+                            Id = 24,
                             ClaimType = "permissions",
                             ClaimValue = "Create HotelRoom",
                             RoleId = "propertymanager"
                         },
                         new
                         {
-                            Id = 26,
+                            Id = 25,
                             ClaimType = "permissions",
                             ClaimValue = "See HotelRooms",
+                            RoleId = "propertymanager"
+                        },
+                        new
+                        {
+                            Id = 26,
+                            ClaimType = "permissions",
+                            ClaimValue = "Update HotelRooms",
                             RoleId = "propertymanager"
                         },
                         new
                         {
                             Id = 27,
                             ClaimType = "permissions",
-                            ClaimValue = "Update HotelRooms",
+                            ClaimValue = "See Rooms",
                             RoleId = "propertymanager"
                         },
                         new
                         {
                             Id = 28,
                             ClaimType = "permissions",
-                            ClaimValue = "See Rooms",
+                            ClaimValue = "See Amenities",
                             RoleId = "propertymanager"
                         },
                         new
                         {
                             Id = 29,
                             ClaimType = "permissions",
-                            ClaimValue = "See Amenities",
+                            ClaimValue = "Add Amenity to Room",
                             RoleId = "propertymanager"
                         },
                         new
                         {
                             Id = 30,
                             ClaimType = "permissions",
-                            ClaimValue = "Add Amenity to Room",
+                            ClaimValue = "Delete Amenity From Room",
                             RoleId = "propertymanager"
                         },
                         new
                         {
                             Id = 31,
                             ClaimType = "permissions",
-                            ClaimValue = "Delete Amenity From Room",
+                            ClaimValue = "Update Amenity",
                             RoleId = "propertymanager"
                         },
                         new
                         {
                             Id = 32,
                             ClaimType = "permissions",
-                            ClaimValue = "Update Amenity",
-                            RoleId = "propertymanager"
-                        },
-                        new
-                        {
-                            Id = 33,
-                            ClaimType = "permissions",
-                            ClaimValue = "Add Room to Hotel",
-                            RoleId = "propertymanager"
-                        },
-                        new
-                        {
-                            Id = 34,
-                            ClaimType = "permissions",
                             ClaimValue = "See HotelRooms",
                             RoleId = "agent"
                         },
                         new
                         {
-                            Id = 35,
+                            Id = 33,
                             ClaimType = "permissions",
                             ClaimValue = "Update HotelRooms",
                             RoleId = "agent"
                         },
                         new
                         {
-                            Id = 36,
+                            Id = 34,
                             ClaimType = "permissions",
                             ClaimValue = "See Amenities",
                             RoleId = "agent"
                         },
                         new
                         {
-                            Id = 37,
+                            Id = 35,
                             ClaimType = "permissions",
                             ClaimValue = "Add Amenity to Room",
                             RoleId = "agent"
                         },
                         new
                         {
-                            Id = 38,
+                            Id = 36,
                             ClaimType = "permissions",
                             ClaimValue = "Delete Amenity From Room",
                             RoleId = "agent"
                         },
                         new
                         {
-                            Id = 39,
+                            Id = 37,
                             ClaimType = "permissions",
                             ClaimValue = "See Hotels",
                             RoleId = "anonymous"
                         },
                         new
                         {
-                            Id = 40,
+                            Id = 38,
                             ClaimType = "permissions",
                             ClaimValue = "See HotelRooms",
                             RoleId = "anonymous"
                         },
                         new
                         {
-                            Id = 41,
+                            Id = 39,
                             ClaimType = "permissions",
                             ClaimValue = "See Rooms",
                             RoleId = "anonymous"
                         },
                         new
                         {
-                            Id = 42,
+                            Id = 40,
                             ClaimType = "permissions",
                             ClaimValue = "See Amenities",
                             RoleId = "anonymous"

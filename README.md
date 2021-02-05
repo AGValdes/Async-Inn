@@ -51,5 +51,19 @@ Today we refactored so that we are accessing our database using interfaces inste
 Below is a link to the deployed API, where you can view documentation of all routes.
 (Link to Deployed API)[https://async-inn.azurewebsites.net/index.html]
 
+2/4/2021
+Today we added Roles to the app, which allowed users to log in as different roles. Each role has certain permissions attached to them, for example:
+- **District Manager:** 
+District manager can do full CRUD operations on all Hotel, HotelRoom, Room, and Amenity entities.
+The district manager can create accounts for all other roles
+- **Property Manager:**
+Property Manager’s can add/update/read new HotelRooms to hotels, and amenities to rooms. A property manager cannot create new room entities or hotel entities.
+The property manager can only create accounts for Agents
+- **Agent:**
+An agent can only update/read a HotelRoom and add/delete amenities to rooms
+- **Anonymous users:**
+anonymous users can only view all GET routes
+
+
 
 
