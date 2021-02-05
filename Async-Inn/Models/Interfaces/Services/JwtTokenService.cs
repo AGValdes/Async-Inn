@@ -12,8 +12,8 @@ namespace Async_Inn.Models.Interfaces.Services
 {
     public class JwtTokenService
     {
-        private IConfiguration configuration;
-        private SignInManager<ApplicationUser> signInManager;
+        private readonly IConfiguration configuration;
+        private readonly  SignInManager<ApplicationUser> signInManager;
 
         public JwtTokenService(IConfiguration config, SignInManager<ApplicationUser> manager)
         {
