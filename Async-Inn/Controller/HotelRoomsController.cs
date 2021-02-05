@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Async_Inn.Data;
 using Async_Inn.Models;
 using Async_Inn.Models.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Async_Inn.Controller
 {
@@ -49,6 +50,7 @@ namespace Async_Inn.Controller
         // PUT: api/HotelRooms/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
+        [Authorize(Policy = "Update HotelRooms")]
         [HttpPut]
         [Route("Hotels/{hotelId}/Rooms/{roomNumber}")]
         public async Task<IActionResult> PutHotelRoom(HotelRoom hotelRoom)
@@ -61,6 +63,7 @@ namespace Async_Inn.Controller
         // POST: api/HotelRooms
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
+        [Authorize(Policy = "Create HotelRooms")]
         [HttpPost]
         public async Task<ActionResult<HotelRoom>> PostHotelRoom(HotelRoom hotelRoom)
         {
@@ -69,6 +72,7 @@ namespace Async_Inn.Controller
         }
 
         // DELETE: api/HotelRooms/5
+        [Authorize(Policy = "Delete HotelRooms")]
         [HttpDelete("{id}")]
         public async Task<ActionResult<HotelRoom>> DeleteHotelRoom(int hotelid, int roomNumber)
         {
@@ -76,6 +80,7 @@ namespace Async_Inn.Controller
             return NoContent();
         }
         //adds a room to a hotel
+        [Authorize(Policy = "Add Room To Hotel")]
         [HttpPost]
         [Route("Hotels/{hotelId}/Rooms")]
         public async Task<IActionResult> AddRoomToHotel(int hotelId, int roomId, int roomNumber, decimal rate, bool petFriendly)
