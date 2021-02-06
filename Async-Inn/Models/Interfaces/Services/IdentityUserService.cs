@@ -18,7 +18,12 @@ namespace Async_Inn.Models.Interfaces.Services
             userManager = manager;
             tokenService = jwtTokenService;
         }
-
+        /// <summary>
+        /// The below method stores a new user into our database so they can log in later.
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="modelState"></param>
+        /// <returns></returns>
         public async Task<UserDTO> Register(RegisterUser data, ModelStateDictionary modelState)
         {
             //throw new NotImplementedException();
@@ -62,6 +67,12 @@ namespace Async_Inn.Models.Interfaces.Services
             return null;
         }
 
+        /// <summary>
+        /// The below mehtod authenitcates input and allowed a user to log in with the currect credentials.
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         public async Task<UserDTO> Authenticate(string username, string password)
         {
             var user = await userManager.FindByNameAsync(username);
@@ -81,6 +92,11 @@ namespace Async_Inn.Models.Interfaces.Services
 
         }
 
+        /// <summary>
+        /// The below method queries the database and retrieves the current user.
+        /// </summary>
+        /// <param name="principal"></param>
+        /// <returns></returns>
         public async Task<UserDTO> GetUser(ClaimsPrincipal principal)
         {
             var user = await userManager.GetUserAsync(principal);

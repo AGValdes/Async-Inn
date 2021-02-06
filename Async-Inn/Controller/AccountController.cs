@@ -50,8 +50,7 @@ namespace Async_Inn.Controller
         [HttpGet("me")]
         public async Task<ActionResult<UserDTO>> Me()
         {
-            // Following the [Authorize] phase, this.User will be ... you.
-            // Put a breakpoint here and inspect to see what's passed to our getUser method
+           
             return await userService.GetUser(this.User);
         }
     }

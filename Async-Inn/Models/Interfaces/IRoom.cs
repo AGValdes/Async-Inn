@@ -7,6 +7,11 @@ namespace Async_Inn.Models.Interfaces
 {
     public interface IRoom
     {
+        /// <summary>
+        /// The below methods will be required in the roomrepository
+        /// </summary>
+        /// <param name="roomDTO"></param>
+        /// <returns></returns>
         Task<RoomDTO> CreateRoom(RoomDTO roomDTO);
         Task<RoomDTO> GetRoom(int Id);
         Task<List<RoomDTO>> GetRooms();
