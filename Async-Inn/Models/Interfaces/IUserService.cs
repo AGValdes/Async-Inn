@@ -10,6 +10,12 @@ namespace Async_Inn.Models.Interfaces
 {
     public interface IUserService 
     {
+        /// <summary>
+        /// The below methods will be required in the identity user service.
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="modelState"></param>
+        /// <returns></returns>
         public Task<UserDTO> Register(RegisterUser data, ModelStateDictionary modelState);
 
         public Task<UserDTO> Authenticate(string username, string password);

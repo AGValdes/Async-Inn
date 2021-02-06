@@ -7,6 +7,11 @@ namespace Async_Inn.Models.Interfaces
 {
     public interface IHotelRoom
     {
+        /// <summary>
+        /// The below methods will be required in the hotelroom respository
+        /// </summary>
+        /// <param name="hotelRoom"></param>
+        /// <returns></returns>
         Task<HotelRoom> CreateHotelRoom(HotelRoom hotelRoom);
         Task<HotelRoom> GetHotelRoom(int hotelId, int roomNumber);
         Task<List<HotelRoom>> GetHotelRooms(int hotelId);
